@@ -27,6 +27,9 @@
                     Model
                 </th>
                 <th>
+                    Color
+                </th>
+                <th>
                     Price
                 </th>
             </tr>
@@ -35,10 +38,11 @@
     @foreach (var Car in Model)
     {
         <tr>
-            <td width="30%"></td>
-            <td width="30%">@Car.Model</td>
-            <td width="30%">@Car.Mark</td>
-            <td width="30%">@Car.Price</td>
+            <td width="20%"></td>
+            <td width="20%">@Car.Model</td>
+            <td width="20%">@Car.Mark</td>
+            <td width="20%">@Car.Color</td> 
+            <td width="20%">@Car.Price</td>
         </tr>
     }
         </tbody>
