@@ -1,0 +1,54 @@
+﻿
+@model IEnumerable<crud.Models.Car>
+
+<div class="row pt-4">
+    <div class="col-6">
+        <h2 class="text-primary">Cars list</h2>
+    </div>
+    <div class="col-6 text-xl-end">
+        <a asp-controller="Car" asp-action="Create" class="btn btn-primary">create new car</a>
+    </div>
+</div>
+</br>
+
+
+@if(Model.Count()>0)
+{
+    <table class=" table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    Owner
+                </th>
+                <th>
+                    Mark
+                </th>
+                <th>
+                    Model
+                </th>
+                <th>
+                    Price
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var Car in Model)
+    {
+        <tr>
+            <td width="30%"></td>
+            <td width="30%">@Car.Model</td>
+            <td width="30%">@Car.Mark</td>
+            <td width="30%">@Car.Price</td>
+        </tr>
+    }
+        </tbody>
+    </table>
+
+}
+else
+{
+    <p>no cars :c</p>
+}
+
+
+
