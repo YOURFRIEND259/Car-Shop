@@ -4,31 +4,31 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace crud.Controllers
 {
-    public class CarController : Controller
+    public class ClientController : Controller
     {
         private readonly ApplicationDbContext _db;
 
-        public CarController(ApplicationDbContext db)
+        public ClientController(ApplicationDbContext db)
         {
-            _db=db;
+            _db = db;
         }
 
 
         public IActionResult Index()
         {
-            IEnumerable<Car> objList = _db.Cars;
+            IEnumerable<Client> objList = _db.Clients;
             return View(objList);
         }
         public IActionResult Create()
         {
-            
+
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Car obj)
+        public IActionResult Create(Client obj)
         {
-            _db.Cars.Add(obj);
+            _db.Clients.Add(obj);
             _db.SaveChanges();
             return RedirectToAction("Index");
         }

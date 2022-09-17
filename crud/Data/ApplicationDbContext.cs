@@ -12,5 +12,6 @@ namespace crud.Data
         }
 
         public DbSet<Car> Cars { get; set; }
+        public DbSet<Client> Clients { get; set; }
     }
 }
