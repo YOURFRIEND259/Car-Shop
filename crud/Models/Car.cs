@@ -15,7 +15,8 @@ namespace crud.Models
         public string Model { get; set; } 
         [Required(ErrorMessage = "Color is required!")]
         public string Color { get; set; }
-        [Required(ErrorMessage = "Price is required!")]
+        [Required]
+        [Range(1,int.MaxValue,ErrorMessage = "Price is required!")]
         public decimal Price { get; set; }
 
     }

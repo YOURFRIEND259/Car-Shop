@@ -12,10 +12,12 @@ namespace crud.Models
         public string Name { get; set; }
         [Required(ErrorMessage = "Surname is required!")]
         public string Surname { get; set; }
-        [Required(ErrorMessage = "Mark is required!")]
+        [Required(ErrorMessage = "Email is required!")]
         public string Email { get; set; }
         [Required(ErrorMessage = "Money is required!")]
+        [Range(1, int.MaxValue, ErrorMessage = "Enter more than 0!")]
         public decimal Money { get; set; }
+
 
 
     }

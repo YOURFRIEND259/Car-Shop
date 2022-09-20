@@ -43,6 +43,12 @@
             <td width="20%">@Car.Mark</td>
             <td width="20%">@Car.Color</td> 
             <td width="20%">@Car.Price</td>
+            <td width="20%">
+                <div class="w-100 btn-group"role="group">
+                    <a asp-controller="Car" asp-action="Update" asp-route-Id="@Car.Id" class="btn btn-primary mx-1">Update</a>
+                    <a asp-controller="Car" asp-action="Delete" asp-route-Id="@Car.Id" class="btn btn-danger mx-1">Delete</a>
+                </div>
+            </td>
         </tr>
     }
         </tbody>

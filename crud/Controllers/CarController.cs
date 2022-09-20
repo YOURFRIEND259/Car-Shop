@@ -1,6 +1,11 @@
 ﻿using crud.Data;
 using crud.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace crud.Controllers
 {
@@ -28,9 +33,69 @@ namespace crud.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Car obj)
         {
-            _db.Cars.Add(obj);
+            if(ModelState.IsValid)
+            {
+                _db.Cars.Add(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(obj);
+        }
+
+        public IActionResult Delete(int? id)
+        {
+            if (id == null|| id==0)
+            {
+                return NotFound();
+            }
+            var obj=_db.Cars.Find(id);
+            if (obj==null)
+            {
+                return NotFound();
+            }
+            return View(obj);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeletePost(int? id)
+        {
+            var obj = _db.Cars.Find(id);
+            if(obj == null)
+            {
+                return NotFound();
+            }
+
+            _db.Cars.Remove(obj);
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
+        
+        public IActionResult Update(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var obj = _db.Cars.Find(id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            return View(obj);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Update(Car obj)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Cars.Update(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(obj);
+        }
     }
+
 }
+

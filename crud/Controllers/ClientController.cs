@@ -28,9 +28,13 @@ namespace crud.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Client obj)
         {
-            _db.Clients.Add(obj);
-            _db.SaveChanges();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                _db.Clients.Add(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(obj);
         }
     }
 }
