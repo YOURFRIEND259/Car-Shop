@@ -21,7 +21,6 @@ namespace crud.Controllers
         }
         public IActionResult Create()
         {
-
             return View();
         }
         [HttpPost]
@@ -30,11 +29,22 @@ namespace crud.Controllers
         {
             if (ModelState.IsValid)
             {
+                var isEmailAlreadyExists = _db.Clients.Any(x => x.Email == obj.Email);
+                if (isEmailAlreadyExists)
+                {
+                    ModelState.AddModelError("Email", "User with this email already exists");
+                    return View(obj);
+                }
                 _db.Clients.Add(obj);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(obj);
+        }
+
+        public IActionResult Login()
+        {
+            return View();
         }
     }
 }

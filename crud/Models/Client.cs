@@ -1,4 +1,5 @@
 ﻿using MessagePack;
+using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using KeyAttribute = System.ComponentModel.DataAnnotations.KeyAttribute;
 
