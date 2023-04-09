@@ -46,3 +46,25 @@ button.accept-policy {
   white-space: nowrap;
   line-height: 60px;
 }
+.container-fluid {
+    background-color: black;
+    text-align: center;
+    height: 50px;
+    width: 100%;
+    border: none;
+    color:grey
+}
+
+.nav-item:hover {
+    background-color: white;
+}
+
+.navbar {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.navcos {
+    color: white !important;
+    text-decoration: none;
+}

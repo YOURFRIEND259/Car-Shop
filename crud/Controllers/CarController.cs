@@ -26,15 +26,15 @@ namespace crud.Controllers
         }
         public IActionResult Create()
         {
-            
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Car obj)
-        {
-            if(ModelState.IsValid)
+        public IActionResult Create(Car obj, IFormFile[] pic)
+        { 
+            if (ModelState.IsValid)
             {
+/*           ADD IMAGES AS BYTE ARRAY*/
                 _db.Cars.Add(obj);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
@@ -95,6 +95,8 @@ namespace crud.Controllers
             }
             return View(obj);
         }
+
+
     }
 
 }

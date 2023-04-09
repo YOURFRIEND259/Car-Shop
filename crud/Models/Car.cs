@@ -10,14 +10,15 @@ namespace crud.Models
         [Key]
         public int Id { get; set; } 
         [Required(ErrorMessage = "Mark is required!")]
-        public string Mark { get; set; }
+        public string ?Mark { get; set; }
         [Required(ErrorMessage = "Model is required!")]
-        public string Model { get; set; } 
+        public string ?Model { get; set; } 
         [Required(ErrorMessage = "Color is required!")]
-        public string Color { get; set; }
+        public string ?Color { get; set; }
         [Required]
         [Range(1,int.MaxValue,ErrorMessage = "Price is required!")]
         public decimal Price { get; set; }
+        public byte[]? Picture { get; set; }
 
     }
 }
