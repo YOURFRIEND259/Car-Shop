@@ -18,6 +18,8 @@ namespace crud.Models
         [Required]
         [Range(1,int.MaxValue,ErrorMessage = "Price is required!")]
         public decimal Price { get; set; }
+        [NotMapped]
+        [Column(TypeName = "bytea")]
         public byte[]? Picture { get; set; }
 
     }

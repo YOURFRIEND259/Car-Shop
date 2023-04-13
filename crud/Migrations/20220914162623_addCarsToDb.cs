@@ -5,7 +5,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace crud.Migrations
 {
-    public partial class addCarsToDb : Migration
+    public partial class AddCarsToDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -18,8 +18,9 @@ namespace crud.Migrations
                     Mark = table.Column<string>(type: "text", nullable: false),
                     Model = table.Column<string>(type: "text", nullable: false),
                     Color = table.Column<string>(type: "text", nullable: false),
-                    Price = table.Column<decimal>(type: "numeric", nullable: false)
-                },
+                    Price = table.Column<decimal>(type: "numeric", nullable: false),
+                    Picture =table.Column<byte[]>(type: "bytea",nullable: false),
+        },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Cars", x => x.Id);

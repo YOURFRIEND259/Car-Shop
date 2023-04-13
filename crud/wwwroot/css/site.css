@@ -30,6 +30,6 @@ a.mynav {
     color: white !important;
     text-decoration: none;
 }
-    .navcos:hover {
-        color: black !important;
-    }
+.navcos:hover {
+   color: black !important;
+}

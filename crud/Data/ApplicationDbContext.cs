@@ -10,7 +10,10 @@ namespace crud.Data
         {
 
         }
-
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Car>().Property(c => c.Picture).HasColumnType("bytea");
+        }
         public DbSet<Car> Cars { get; set; }
         public DbSet<Client> Clients { get; set; }
     }

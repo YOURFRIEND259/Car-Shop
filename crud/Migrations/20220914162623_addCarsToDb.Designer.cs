@@ -12,7 +12,7 @@ namespace crud.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20220914162623_addCarsToDb")]
-    partial class addCarsToDb
+    partial class AddCarsToDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

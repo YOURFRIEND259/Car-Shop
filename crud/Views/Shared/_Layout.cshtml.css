@@ -49,10 +49,10 @@ button.accept-policy {
 .container-fluid {
     background-color: black;
     text-align: center;
-    height: 50px;
+    height: 100%;
     width: 100%;
     border: none;
-    color:grey
+    color: grey
 }
 
 .nav-item:hover {

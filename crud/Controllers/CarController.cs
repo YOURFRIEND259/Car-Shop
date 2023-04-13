@@ -1,11 +1,13 @@
 ﻿using crud.Data;
 using crud.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Drawing;
+using System.Web.Helpers;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System.IO;
+using Microsoft.EntityFrameworkCore;
 
 namespace crud.Controllers
 {
@@ -15,7 +17,7 @@ namespace crud.Controllers
 
         public CarController(ApplicationDbContext db)
         {
-            _db=db;
+            _db = db;
         }
 
 
@@ -30,26 +32,37 @@ namespace crud.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Car obj, IFormFile[] pic)
-        { 
+        public async Task<IActionResult> Create([Bind("Id,Mark,Model,Color,Price")] Car obj, IFormFile Picture)
+        {
             if (ModelState.IsValid)
             {
-/*           ADD IMAGES AS BYTE ARRAY*/
+                if (Picture != null && Picture.Length > 0)
+                {
+                    byte[] pictureBytes;
+                    using (var ms = new MemoryStream())
+                    {
+                        await Picture.CopyToAsync(ms);
+                        pictureBytes = ms.ToArray();
+                    }
+                    obj.Picture = pictureBytes;
+                }
+
                 _db.Cars.Add(obj);
-                _db.SaveChanges();
-                return RedirectToAction("Index");
+                await _db.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
             }
             return View(obj);
         }
 
+
         public IActionResult Delete(int? id)
         {
-            if (id == null|| id==0)
+            if (id == null || id == 0)
             {
                 return NotFound();
             }
-            var obj=_db.Cars.Find(id);
-            if (obj==null)
+            var obj = _db.Cars.Find(id);
+            if (obj == null)
             {
                 return NotFound();
             }
@@ -60,7 +73,7 @@ namespace crud.Controllers
         public IActionResult DeletePost(int? id)
         {
             var obj = _db.Cars.Find(id);
-            if(obj == null)
+            if (obj == null)
             {
                 return NotFound();
             }
@@ -69,7 +82,9 @@ namespace crud.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
-        
+
+
+
         public IActionResult Update(int? id)
         {
             if (id == null)
