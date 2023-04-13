@@ -40,13 +40,13 @@
         <tbody>
     @foreach (var Car in Model)
     {
-        <tr>
+        <tr >
             <td width="20%">@Car.Id</td>
             <td width="20%">@Car.Model</td>
             <td width="20%">@Car.Mark</td>
             <td width="20%">@Car.Color</td> 
             <td width="20%">@Car.Price</td>
-            <td width="20%">@Car.Picture</td>
+                    <td  width="20%"><img class="carphoto" src="@Url.Action("RenderImage", new { id = Car.Id})" /></td>
             <td width="20%">
                 <div class="w-100 btn-group"role="group">
                             <a asp-controller="Car" asp-action="Update" asp-route-Id="@Car.Id" class="btn btn-outline-primary mx-1"><img src="Images/update.png" width="40" /></a>
@@ -65,6 +65,5 @@ else
 {
     <p>no cars yet :c</p>
 }
-
 
 

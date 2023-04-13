@@ -33,3 +33,7 @@ a.mynav {
 .navcos:hover {
    color: black !important;
 }
+
+.carphoto {
+    width: 100% !important;
+}

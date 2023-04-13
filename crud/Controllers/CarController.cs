@@ -2,7 +2,6 @@
 using crud.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Drawing;
-using System.Web.Helpers;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -53,7 +52,14 @@ namespace crud.Controllers
             }
             return View(obj);
         }
+        public async Task<ActionResult> RenderImage(int id)
+        {
+            Car item = await _db.Cars.FindAsync(id);
 
+            byte[] photoBack = item.Picture;
+
+            return File(photoBack, "image/png");
+        }
 
         public IActionResult Delete(int? id)
         {
